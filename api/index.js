@@ -111,9 +111,10 @@ app.listen(PORT, () => {
 */
 
 // we will pass our 'app' to 'https' server
+const PORT = process.env.PORT || 3000;
 https.createServer({
     key: fs.readFileSync('./key.pem'),
     cert: fs.readFileSync('./cert.pem'),
     passphrase: '111111'
 }, app)
-.listen(8080);
+.listen(PORT);
