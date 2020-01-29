@@ -3,6 +3,9 @@
 const express = require('express');
 const app = express();
 
+const https = require('https');
+const fs = require('fs');
+
 app.use(express.static('public'));
 const expressWs = require('express-ws')(app);
 
@@ -100,7 +103,17 @@ app.ws('/game', function(ws, req) {
   });
 });
 
+/*
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Running on port ${PORT}`);
 });
+*/
+
+// we will pass our 'app' to 'https' server
+https.createServer({
+    key: fs.readFileSync('./key.pem'),
+    cert: fs.readFileSync('./cert.pem'),
+    passphrase: '111111'
+}, app)
+.listen(3000);
