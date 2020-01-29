@@ -13,4 +13,7 @@
     "express": "^4.13.4",
     "express-ws": "^2.0.0-beta"
   }
+  "scripts": {
+    "build": ""
+  }  
 }
